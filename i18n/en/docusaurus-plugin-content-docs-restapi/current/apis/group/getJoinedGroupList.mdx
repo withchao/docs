@@ -1,0 +1,194 @@
+---
+sidebar_position: 17
+title: "Get Joined Group List"
+hide_title: true
+---
+
+<center>
+
+## Get Joined Group List
+
+</center>
+
+### 简要描述
+
+- 获取指定用户已加入的群组。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/group/get_joined_group_list`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "fromUserID": "9906953281",
+  "pagination": {
+    "pageNumber": "1",
+    "showNumber": "10"
+  }
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+| fromUserID | 必填 | string | 用户ID |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "groups": [
+      {
+        "applyMemberFriend": "ProhibitGroupApplyMemberFriend",
+        "createTime": 0,
+        "creatorUserID": "string",
+        "displayIsRead": false,
+        "ex": "string",
+        "faceURL": "string",
+        "groupID": "string",
+        "groupName": "string",
+        "groupType": "GroupType_",
+        "introduction": "string",
+        "lookMemberInfo": "ProhibitGroupLookMemberInfo",
+        "memberCount": 0,
+        "needVerification": "ApplyNeedVerificationInviteDirectly",
+        "notification": "string",
+        "notificationUpdateTime": 0,
+        "notificationUserID": "string",
+        "ownerUserID": "string",
+        "status": "GroupStatusDefault"
+      }
+    ],
+    "total": 0
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetJoinedGroupListResp](#ref-openim-group-getjoinedgrouplistresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-group-getjoinedgrouplistreq"></a>
+
+#### GetJoinedGroupListReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+| fromUserID | 必填 | string | 用户ID |
+
+<a id="ref-openim-sdkws-requestpagination"></a>
+
+#### RequestPagination
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pageNumber | 必填 | int32 |  |
+| showNumber | 必填 | int32 |  |
+
+<a id="ref-openim-group-getjoinedgrouplistresp"></a>
+
+#### GetJoinedGroupListResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| total | 必填 | uint32 |  |
+| groups | 必填 | [[]GroupInfo](#ref-openim-sdkws-groupinfo) |  |
+
+<a id="ref-openim-sdkws-groupinfo"></a>
+
+#### GroupInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| groupName | 必填 | string | 群名称 |
+| notification | 必填 | string | 群公告 |
+| introduction | 必填 | string | 群简介 |
+| faceURL | 必填 | string | 群头像 |
+| ownerUserID | 必填 | string | 群主用户ID |
+| createTime | 必填 | int64 | 群创建时间（毫秒） |
+| memberCount | 必填 | uint32 | 群成员数量 |
+| ex | 必填 | string | 扩展字段 |
+| status | 必填 | [GroupStatus](#ref-openim-sdkws-groupstatus) | 群状态 |
+| creatorUserID | 必填 | string | 群创建者用户ID |
+| groupType | 必填 | [GroupType](#ref-openim-sdkws-grouptype) | 群类型 |
+| needVerification | 必填 | [GroupNeedVerification](#ref-openim-sdkws-groupneedverification) | 是否需要验证 |
+| lookMemberInfo | 必填 | [GroupLookMemberInfo](#ref-openim-sdkws-grouplookmemberinfo) | 是否允许群成员查看群信息和成员列表 |
+| applyMemberFriend | 必填 | [GroupApplyMemberFriend](#ref-openim-sdkws-groupapplymemberfriend) | 是否允许群成员加好友 |
+| notificationUpdateTime | 必填 | int64 | 群信息最后一次更新时间（毫秒） |
+| notificationUserID | 必填 | string | 发送系统通知消息的用户ID |
+| displayIsRead | 必填 | bool | 是否显示已读未读状态 |
+
+<a id="ref-openim-sdkws-groupstatus"></a>
+
+#### GroupStatus
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| GroupStatusDefault | 0 | normal group chat |
+| GroupStatusBanned | 1 | the group chat has been banned |
+| GroupStatusDismissed | 2 | the group chat has been dismissed |
+| GroupStatusMuted | 3 | the group chat has been muted |
+
+<a id="ref-openim-sdkws-grouptype"></a>
+
+#### GroupType
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| GroupType_ | 0 |  |
+| WorkingGroup | 2 | currently, there is only this one. |
+
+<a id="ref-openim-sdkws-groupneedverification"></a>
+
+#### GroupNeedVerification
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| ApplyNeedVerificationInviteDirectly | 0 | application requires consent, and invitation is direct entry. |
+| AllNeedVerification | 1 | everyone entering the group needs to be verified, except for those invited by the group owner or administrator. |
+| DirectAccess | 2 | direct access to group chat. |
+
+<a id="ref-openim-sdkws-grouplookmemberinfo"></a>
+
+#### GroupLookMemberInfo
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| ProhibitGroupLookMemberInfo | 0 | do not allow access to member information via the group |
+| AllowGroupLookMemberInfo | 1 | allow access to member information via the group |
+
+<a id="ref-openim-sdkws-groupapplymemberfriend"></a>
+
+#### GroupApplyMemberFriend
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| ProhibitGroupApplyMemberFriend | 0 | do not allow group members to add friends directly |
+| AllowGroupApplyMemberFriend | 1 | allow group members to add friends directly |
+

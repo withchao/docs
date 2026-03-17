@@ -1,0 +1,99 @@
+---
+sidebar_position: 7
+title: "Clear Conversations Msg"
+hide_title: true
+---
+
+<center>
+
+## Clear Conversations Msg
+
+</center>
+
+### 简要描述
+
+- Clear all messages in specified conversation, reset min seq to max seq + 1
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/msg/clear_conversation_msg`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "conversationIDs": [
+    "string"
+  ],
+  "deleteSyncOpt": {
+    "IsSyncOther": false,
+    "IsSyncSelf": false
+  },
+  "userID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationIDs | 必填 | []string |  |
+| userID | 必填 | string |  |
+| deleteSyncOpt | 必填 | [DeleteSyncOpt](#ref-openim-msg-deletesyncopt) |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-msg-clearconversationsmsgreq"></a>
+
+#### ClearConversationsMsgReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationIDs | 必填 | []string |  |
+| userID | 必填 | string |  |
+| deleteSyncOpt | 必填 | [DeleteSyncOpt](#ref-openim-msg-deletesyncopt) |  |
+
+<a id="ref-openim-msg-deletesyncopt"></a>
+
+#### DeleteSyncOpt
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| IsSyncSelf | 必填 | bool |  |
+| IsSyncOther | 必填 | bool |  |
+
+<a id="ref-openim-msg-clearconversationsmsgresp"></a>
+
+#### ClearConversationsMsgResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

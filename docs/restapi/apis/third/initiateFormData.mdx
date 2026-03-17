@@ -1,0 +1,139 @@
+---
+sidebar_position: 7
+title: "Initiate Form Data"
+hide_title: true
+---
+
+<center>
+
+## Initiate Form Data
+
+</center>
+
+### 简要描述
+
+- 初始化表单直传任务，获取上传所需的临时 URL、字段和 Header。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/object/initiate_form_data`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "absolute": false,
+  "contentType": "image/png",
+  "group": "avatar",
+  "millisecond": 600000,
+  "name": "avatar.png",
+  "size": 204800
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| name | 必填 | string | 对象名称，通常为文件名 |
+| size | 必填 | int64 | 文件大小（字节） |
+| contentType | 必填 | string | 文件 MIME 类型，如 `image/png` |
+| group | 可选 | string | 文件分组标识，用于在存储端区分业务目录 |
+| millisecond | 可选 | int64 | 上传地址有效时长（毫秒），不填使用服务端默认值 |
+| absolute | 必填 | bool |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "expires": 0,
+    "file": "string",
+    "formData": {
+      "string": "string"
+    },
+    "header": [
+      {
+        "key": "string",
+        "values": [
+          "string"
+        ]
+      }
+    ],
+    "id": "string",
+    "successCodes": [
+      0
+    ],
+    "url": "string"
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [InitiateFormDataResp](#ref-openim-third-initiateformdataresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-third-initiateformdatareq"></a>
+
+#### InitiateFormDataReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| name | 必填 | string | 对象名称，通常为文件名 |
+| size | 必填 | int64 | 文件大小（字节） |
+| contentType | 必填 | string | 文件 MIME 类型，如 `image/png` |
+| group | 可选 | string | 文件分组标识，用于在存储端区分业务目录 |
+| millisecond | 可选 | int64 | 上传地址有效时长（毫秒），不填使用服务端默认值 |
+| absolute | 必填 | bool |  |
+
+<a id="ref-openim-third-initiateformdataresp"></a>
+
+#### InitiateFormDataResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| id | 必填 | string |  |
+| url | 必填 | string |  |
+| file | 必填 | string |  |
+| header | 必填 | [[]KeyValues](#ref-openim-third-keyvalues) |  |
+| formData | 必填 | [map []FormDataEntry](#ref-openim-third-initiateformdataresp-formdataentry) |  |
+| expires | 必填 | int64 |  |
+| successCodes | 必填 | []int32 |  |
+
+<a id="ref-openim-third-keyvalues"></a>
+
+#### KeyValues
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| key | 必填 | string |  |
+| values | 必填 | []string |  |
+
+<a id="ref-openim-third-initiateformdataresp-formdataentry"></a>
+
+#### FormDataEntry
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| key | 必填 | string |  |
+| value | 必填 | string |  |
+

@@ -1,0 +1,101 @@
+---
+sidebar_position: 3
+title: "Force Logout"
+hide_title: true
+---
+
+<center>
+
+## Force Logout
+
+</center>
+
+### 简要描述
+
+- 强制用户从某个终端退出登录。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/auth/force_logout`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "platformID": 1,
+  "userID": "123456789"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| platformID | 必填 | [Platform](#ref-openim-sdkws-platform) | 用户登录时的终端平台 |
+| userID | 必填 | string | 用户ID |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-auth-forcelogoutreq"></a>
+
+#### forceLogoutReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| platformID | 必填 | [Platform](#ref-openim-sdkws-platform) | 用户登录时的终端平台 |
+| userID | 必填 | string | 用户ID |
+
+<a id="ref-openim-sdkws-platform"></a>
+
+#### Platform
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| Platform_ | 0 |  |
+| iOS | 1 | iOS represents the Apple iOS platform. |
+| Android | 2 | Android represents the Android platform. |
+| Windows | 3 | Windows represents the Microsoft Windows platform. |
+| macOS | 4 | macOS represents the Apple macOS platform. |
+| Web | 5 | Web represents the web browser platform. |
+| MiniWeb | 6 | MiniWeb represents the mini-program or mini-web platform. |
+| Linux | 7 | Linux represents the Linux platform. |
+| AndroidPad | 8 | AndroidPad represents the Android tablet platform. |
+| iPad | 9 | iPad represents the Apple iPad platform. |
+| Admin | 10 | Admin represents the admin panel or management platform, typically used for backend administrators.<br />This platform is specifically for administrative filling and can generally be ignored. |
+| HarmonyOS | 11 | HarmonyOS represents the Huawei HarmonyOS platform. |
+
+<a id="ref-openim-auth-forcelogoutresp"></a>
+
+#### forceLogoutResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

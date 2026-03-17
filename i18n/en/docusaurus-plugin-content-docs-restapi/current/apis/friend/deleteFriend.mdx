@@ -1,0 +1,82 @@
+---
+sidebar_position: 11
+title: "Delete Friend"
+hide_title: true
+---
+
+<center>
+
+## Delete Friend
+
+</center>
+
+### 简要描述
+
+- 将 friendUserID 从 ownerUserID 的好友列表中单向删除。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/friend/delete_friend`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "friendUserID": "11111113",
+  "ownerUserID": "11111111"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| ownerUserID | 必填 | string | 需要删除好友的用户 |
+| friendUserID | 必填 | string | 待删除的好友 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-relation-deletefriendreq"></a>
+
+#### deleteFriendReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| ownerUserID | 必填 | string | 需要删除好友的用户 |
+| friendUserID | 必填 | string | 待删除的好友 |
+
+<a id="ref-openim-relation-deletefriendresp"></a>
+
+#### deleteFriendResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

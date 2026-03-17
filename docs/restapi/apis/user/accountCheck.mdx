@@ -1,0 +1,100 @@
+---
+sidebar_position: 5
+title: "Account Check"
+hide_title: true
+---
+
+<center>
+
+## Account Check
+
+</center>
+
+### 简要描述
+
+- 查询指定的用户 ID 是否已经在IMServer中注册。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/user/account_check`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "checkUserIDs": [
+    "11111111",
+    "11111112"
+  ]
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| checkUserIDs | 必填 | []string | 需要查询的用户 ID 列表 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "results": [
+      {
+        "accountStatus": 0,
+        "userID": "string"
+      }
+    ]
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [accountCheckResp](#ref-openim-user-accountcheckresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-user-accountcheckreq"></a>
+
+#### accountCheckReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| checkUserIDs | 必填 | []string | 需要查询的用户 ID 列表 |
+
+<a id="ref-openim-user-accountcheckresp"></a>
+
+#### accountCheckResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| results | 必填 | [[]singleUserStatus](#ref-openim-user-accountcheckresp-singleuserstatus) | 查询结果。 |
+
+<a id="ref-openim-user-accountcheckresp-singleuserstatus"></a>
+
+#### singleUserStatus
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户 ID。 |
+| accountStatus | 必填 | int32 | 账户状态：0 未注册，1 已注册。 |
+

@@ -1,0 +1,84 @@
+---
+sidebar_position: 27
+title: "Del User Client Config"
+hide_title: true
+---
+
+<center>
+
+## Del User Client Config
+
+</center>
+
+### 简要描述
+
+- user 服务接口定义。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/user/del_user_client_config`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "keys": [
+    "string"
+  ],
+  "userID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| keys | 必填 | []string |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-user-deluserclientconfigreq"></a>
+
+#### delUserClientConfigReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| keys | 必填 | []string |  |
+
+<a id="ref-openim-user-deluserclientconfigresp"></a>
+
+#### delUserClientConfigResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

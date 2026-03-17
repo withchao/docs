@@ -1,0 +1,136 @@
+---
+sidebar_position: 13
+title: "Search Logs"
+hide_title: true
+---
+
+<center>
+
+## Search Logs
+
+</center>
+
+### 简要描述
+
+- 三方服务接口，提供对象存储、推送、日志等功能。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/third/logs/search`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "endTime": 0,
+  "keyword": "string",
+  "pagination": {
+    "pageNumber": 0,
+    "showNumber": 0
+  },
+  "startTime": 0
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| keyword | 必填 | string |  |
+| startTime | 必填 | int64 |  |
+| endTime | 必填 | int64 |  |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "logsInfos": [
+      {
+        "createTime": 0,
+        "ex": "string",
+        "filename": "string",
+        "logID": "string",
+        "nickname": "string",
+        "platform": "string",
+        "systemType": "string",
+        "url": "string",
+        "userID": "string",
+        "version": "string"
+      }
+    ],
+    "total": 0
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [SearchLogsResp](#ref-openim-third-searchlogsresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-third-searchlogsreq"></a>
+
+#### SearchLogsReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| keyword | 必填 | string |  |
+| startTime | 必填 | int64 |  |
+| endTime | 必填 | int64 |  |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) |  |
+
+<a id="ref-openim-sdkws-requestpagination"></a>
+
+#### RequestPagination
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pageNumber | 必填 | int32 |  |
+| showNumber | 必填 | int32 |  |
+
+<a id="ref-openim-third-searchlogsresp"></a>
+
+#### SearchLogsResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| logsInfos | 必填 | [[]LogInfo](#ref-openim-third-loginfo) |  |
+| total | 必填 | uint32 |  |
+
+<a id="ref-openim-third-loginfo"></a>
+
+#### LogInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| platform | 必填 | string |  |
+| url | 必填 | string |  |
+| createTime | 必填 | int64 |  |
+| nickname | 必填 | string |  |
+| logID | 必填 | string |  |
+| filename | 必填 | string |  |
+| systemType | 必填 | string |  |
+| ex | 必填 | string |  |
+| version | 必填 | string |  |
+

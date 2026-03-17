@@ -1,0 +1,101 @@
+---
+sidebar_position: 9
+title: "User Register Count"
+hide_title: true
+---
+
+<center>
+
+## User Register Count
+
+</center>
+
+### 简要描述
+
+- Get the total number of users and the user increment within a specified time period
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/statistics/user/register`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "end": 0,
+  "start": 0
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| start | 必填 | int64 |  |
+| end | 必填 | int64 |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "before": 0,
+    "count": {
+      "string": 0
+    },
+    "total": 0
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [userRegisterCountResp](#ref-openim-user-userregistercountresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-user-userregistercountreq"></a>
+
+#### userRegisterCountReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| start | 必填 | int64 |  |
+| end | 必填 | int64 |  |
+
+<a id="ref-openim-user-userregistercountresp"></a>
+
+#### userRegisterCountResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| total | 必填 | int64 |  |
+| before | 必填 | int64 |  |
+| count | 必填 | [map []CountEntry](#ref-openim-user-userregistercountresp-countentry) |  |
+
+<a id="ref-openim-user-userregistercountresp-countentry"></a>
+
+#### CountEntry
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| key | 必填 | string |  |
+| value | 必填 | int64 |  |
+

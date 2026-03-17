@@ -1,0 +1,234 @@
+---
+sidebar_position: 7
+title: "Get Meetings"
+hide_title: true
+---
+
+<center>
+
+## Get Meetings
+
+</center>
+
+### 简要描述
+
+- Retrieves a list of meetings that the user has created or joined, filtered by status.
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/rtc-meeting/get_meetings`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "status": [
+    "string"
+  ],
+  "userID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | The unique identifier of the user. |
+| status | 必填 | []string | The status filter for meetings, e.g., "scheduled", "in-progress", "completed". |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "meetingDetails": [
+      {
+        "info": {
+          "creatorDefinedMeeting": {
+            "coHostUSerID": [
+              "string"
+            ],
+            "hostUserID": "string",
+            "meetingDuration": 0,
+            "password": "string",
+            "scheduledTime": 0,
+            "timeZone": "string",
+            "title": "string"
+          },
+          "systemGenerated": {
+            "creatorNickname": "string",
+            "creatorUserID": "string",
+            "meetingID": "string",
+            "startTime": 0,
+            "status": "string"
+          }
+        },
+        "repeatInfo": {
+          "endDate": 0,
+          "interval": 0,
+          "repeatDaysOfWeek": [
+            "SUNDAY"
+          ],
+          "repeatTimes": 0,
+          "repeatType": "string",
+          "uintType": "string"
+        },
+        "setting": {
+          "audioEncouragement": false,
+          "canParticipantJoinMeetingEarly": false,
+          "canParticipantsEnableCamera": false,
+          "canParticipantsShareScreen": false,
+          "canParticipantsUnmuteMicrophone": false,
+          "disableCameraOnJoin": false,
+          "disableMicrophoneOnJoin": false,
+          "lockMeeting": false,
+          "videoMirroring": false
+        }
+      }
+    ]
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetMeetingsResp](#ref-openmeeting-meeting-getmeetingsresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openmeeting-meeting-getmeetingsreq"></a>
+
+#### GetMeetingsReq
+
+Request to get a list of meetings both created and joined by a user.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | The unique identifier of the user. |
+| status | 必填 | []string | The status filter for meetings, e.g., "scheduled", "in-progress", "completed". |
+
+<a id="ref-openmeeting-meeting-getmeetingsresp"></a>
+
+#### GetMeetingsResp
+
+Response with a list of meetings that the user has created or joined.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| meetingDetails | 必填 | [[]MeetingInfoSetting](#ref-openmeeting-meeting-meetinginfosetting) | Detailed information about each meeting. |
+
+<a id="ref-openmeeting-meeting-meetinginfosetting"></a>
+
+#### MeetingInfoSetting
+
+Detailed information about a meeting, combining info and settings.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| info | 必填 | [MeetingInfo](#ref-openmeeting-meeting-meetinginfo) |  |
+| setting | 必填 | [MeetingSetting](#ref-openmeeting-meeting-meetingsetting) |  |
+| repeatInfo | 必填 | [MeetingRepeatInfo](#ref-openmeeting-meeting-meetingrepeatinfo) |  |
+
+<a id="ref-openmeeting-meeting-meetinginfo"></a>
+
+#### MeetingInfo
+
+Information about a specific meeting, combining system-generated and creator-defined information.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| systemGenerated | 必填 | [SystemGeneratedMeetingInfo](#ref-openmeeting-meeting-systemgeneratedmeetinginfo) |  |
+| creatorDefinedMeeting | 必填 | [CreatorDefinedMeetingInfo](#ref-openmeeting-meeting-creatordefinedmeetinginfo) |  |
+
+<a id="ref-openmeeting-meeting-systemgeneratedmeetinginfo"></a>
+
+#### SystemGeneratedMeetingInfo
+
+Information about a specific meeting that cannot be changed once set.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| creatorUserID | 必填 | string | The user ID of the meeting creator. |
+| creatorNickname | 必填 | string | The user name of the meeting creator. |
+| status | 必填 | string | The current status of the meeting, e.g., scheduled, in-progress, completed. |
+| startTime | 必填 | int64 | The actual start time of the meeting (as a timestamp). |
+| meetingID | 必填 | string | Unique identifier for the meeting. |
+
+<a id="ref-openmeeting-meeting-creatordefinedmeetinginfo"></a>
+
+#### CreatorDefinedMeetingInfo
+
+Information about a specific meeting that can be modified.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| title | 必填 | string | The title of the meeting. |
+| scheduledTime | 必填 | int64 | The scheduled start time of the meeting (as a timestamp). |
+| meetingDuration | 必填 | int64 | The duration of the meeting in seconds. |
+| password | 必填 | string | Password required to join the meeting, if any. |
+| timeZone | 必填 | string | creator specify time zone. |
+| hostUserID | 必填 | string |  |
+| coHostUSerID | 必填 | []string |  |
+
+<a id="ref-openmeeting-meeting-meetingsetting"></a>
+
+#### MeetingSetting
+
+Settings controlling meeting features such as video, audio, and screen sharing permissions.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| canParticipantsEnableCamera | 必填 | bool | Whether participants can enable their video camera. |
+| canParticipantsUnmuteMicrophone | 必填 | bool | Whether participants can unmute their microphone. |
+| canParticipantsShareScreen | 必填 | bool | Whether participants can share their screen. |
+| disableCameraOnJoin | 必填 | bool | Whether the camera is disabled by default when joining. |
+| disableMicrophoneOnJoin | 必填 | bool | Whether the microphone is disabled by default when joining. |
+| canParticipantJoinMeetingEarly | 必填 | bool | Allow participants to join the meeting early. |
+| lockMeeting | 必填 | bool | if the meeting is locked, new comer could not join the meeting. |
+| audioEncouragement | 必填 | bool | could turn on the audio encouragement for client. |
+| videoMirroring | 必填 | bool | could turn on the video mirroring for client. |
+
+<a id="ref-openmeeting-meeting-meetingrepeatinfo"></a>
+
+#### MeetingRepeatInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| endDate | 必填 | int64 |  |
+| repeatTimes | 必填 | int32 |  |
+| repeatType | 必填 | string |  |
+| uintType | 必填 | string |  |
+| interval | 必填 | int32 |  |
+| repeatDaysOfWeek | 必填 | [[]DayOfWeek](#ref-openmeeting-meeting-dayofweek) | repeat days of the week |
+
+<a id="ref-openmeeting-meeting-dayofweek"></a>
+
+#### DayOfWeek
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| SUNDAY | 0 |  |
+| MONDAY | 1 |  |
+| TUESDAY | 2 |  |
+| WEDNESDAY | 3 |  |
+| THURSDAY | 4 |  |
+| FRIDAY | 5 |  |
+| SATURDAY | 6 |  |
+

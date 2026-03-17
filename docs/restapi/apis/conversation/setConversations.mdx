@@ -1,0 +1,115 @@
+---
+sidebar_position: 5
+title: "Set Conversations"
+hide_title: true
+---
+
+<center>
+
+## Set Conversations
+
+</center>
+
+### 简要描述
+
+- 多个用户对同一会话可选择性的设置字段。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/conversation/set_conversations`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "conversation": {
+    "attachedInfo": "attached",
+    "burnDuration": "30",
+    "conversationID": "si_4365007572_6965946400",
+    "conversationType": "1",
+    "isPinned": "false",
+    "isPrivateChat": "true",
+    "recvMsgOpt": "0",
+    "userID": "4365007572"
+  },
+  "userIDs": [
+    "6965946400"
+  ]
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userIDs | 必填 | []string | 要设置会话字段的用户ID列表 |
+| conversation | 必填 | [ConversationReq](#ref-openim-conversation-conversationreq) | 会话对象 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-conversation-setconversationsreq"></a>
+
+#### SetConversationsReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userIDs | 必填 | []string | 要设置会话字段的用户ID列表 |
+| conversation | 必填 | [ConversationReq](#ref-openim-conversation-conversationreq) | 会话对象 |
+
+<a id="ref-openim-conversation-conversationreq"></a>
+
+#### ConversationReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationID | 必填 | string |  |
+| conversationType | 必填 | int32 |  |
+| userID | 必填 | string |  |
+| groupID | 必填 | string |  |
+| recvMsgOpt | 可选 | *int32 |  |
+| isPinned | 可选 | *bool |  |
+| attachedInfo | 可选 | *string |  |
+| isPrivateChat | 可选 | *bool |  |
+| ex | 可选 | *string |  |
+| burnDuration | 可选 | *int32 |  |
+| minSeq | 可选 | *int64 |  |
+| maxSeq | 可选 | *int64 |  |
+| groupAtType | 可选 | *int32 |  |
+| msgDestructTime | 可选 | *int64 |  |
+| isMsgDestruct | 可选 | *bool |  |
+
+<a id="ref-openim-conversation-setconversationsresp"></a>
+
+#### SetConversationsResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

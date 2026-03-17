@@ -1,0 +1,85 @@
+---
+sidebar_position: 15
+title: "Revoke Msg"
+hide_title: true
+---
+
+<center>
+
+## Revoke Msg
+
+</center>
+
+### 简要描述
+
+- 模拟用户撤回一条已发送的消息。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/msg/revoke_msg`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "conversationID": "si_2699373280_9906953281",
+  "seq": 2,
+  "userID": "9906953281"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationID | 必填 | string | 会话ID |
+| seq | 必填 | int64 | 本条消息的seq |
+| userID | 必填 | string | 撤回者ID，消息发送者ID或APP管理员ID；群聊时还可以为群成员等级高于自己的用户ID |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-msg-revokemsgreq"></a>
+
+#### RevokeMsgReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationID | 必填 | string | 会话ID |
+| seq | 必填 | int64 | 本条消息的seq |
+| userID | 必填 | string | 撤回者ID，消息发送者ID或APP管理员ID；群聊时还可以为群成员等级高于自己的用户ID |
+
+<a id="ref-openim-msg-revokemsgresp"></a>
+
+#### RevokeMsgResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

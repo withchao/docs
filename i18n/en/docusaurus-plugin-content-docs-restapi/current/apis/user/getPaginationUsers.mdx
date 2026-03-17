@@ -1,0 +1,177 @@
+---
+sidebar_position: 6
+title: "Get Pagination Users"
+hide_title: true
+---
+
+<center>
+
+## Get Pagination Users
+
+</center>
+
+### 简要描述
+
+- 获取已在IMServer中注册的用户列表。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/user/get_users`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "nickName": "string",
+  "pagination": {
+    "pageNumber": "1",
+    "showNumber": "100"
+  },
+  "statuses": [
+    0
+  ],
+  "userID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+| userID | 必填 | string | 按用户 ID 过滤（可选）。 |
+| nickName | 必填 | string | 按昵称过滤（可选）。 |
+| statuses | 必填 | []int32 |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "total": 0,
+    "users": [
+      {
+        "addFriendPermission": "AddFriendAllowed",
+        "appMangerLevel": "UserOrdinaryUser",
+        "createTime": 0,
+        "ex": "string",
+        "faceURL": "string",
+        "globalRecvMsgOpt": "UserGlobalRecvMsgNormal",
+        "nickname": "string",
+        "status": "UserStatusNormal",
+        "userID": "123456789"
+      }
+    ]
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [getPaginationUsersResp](#ref-openim-user-getpaginationusersresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-user-getpaginationusersreq"></a>
+
+#### getPaginationUsersReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+| userID | 必填 | string | 按用户 ID 过滤（可选）。 |
+| nickName | 必填 | string | 按昵称过滤（可选）。 |
+| statuses | 必填 | []int32 |  |
+
+<a id="ref-openim-sdkws-requestpagination"></a>
+
+#### RequestPagination
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pageNumber | 必填 | int32 |  |
+| showNumber | 必填 | int32 |  |
+
+<a id="ref-openim-user-getpaginationusersresp"></a>
+
+#### getPaginationUsersResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| total | 必填 | int32 | 用户总数。 |
+| users | 必填 | [[]UserInfo](#ref-openim-sdkws-userinfo) | 用户信息列表。 |
+
+<a id="ref-openim-sdkws-userinfo"></a>
+
+#### UserInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户ID |
+| nickname | 必填 | string | 用户昵称 |
+| faceURL | 必填 | string | 用户头像URL |
+| ex | 必填 | string | 用户扩展字段 |
+| createTime | 必填 | int64 | 用户创建时间（毫秒） |
+| appMangerLevel | 必填 | [UserAppMangerLevel](#ref-openim-sdkws-userappmangerlevel) | 用户管理员级别。 |
+| globalRecvMsgOpt | 必填 | [UserGlobalRecvMsgOpt](#ref-openim-sdkws-userglobalrecvmsgopt) | 用户全局接收消息选项 |
+| status | 必填 | [UserStatus](#ref-openim-sdkws-userstatus) | 用户在线状态 |
+| addFriendPermission | 必填 | [UserAddFriendPermission](#ref-openim-sdkws-useraddfriendpermission) | 添加用户好友的权限选项 |
+
+<a id="ref-openim-sdkws-userappmangerlevel"></a>
+
+#### UserAppMangerLevel
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| UserOrdinaryUser | 0 | 普通用户 |
+| UserAdmin | 2 | 管理员 |
+| UserNotificationAdmin | 3 | 系统通知管理员 |
+| UserRobotAdmin | 4 | 机器人管理员 |
+
+<a id="ref-openim-sdkws-userglobalrecvmsgopt"></a>
+
+#### UserGlobalRecvMsgOpt
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| UserGlobalRecvMsgNormal | 0 | Normally receive messages |
+| UserGlobalRecvMsgNotReceive | 1 | Reserved field |
+| UserGlobalRecvMsgNotNotify | 2 | Receive messages, but no offline push. |
+
+<a id="ref-openim-sdkws-userstatus"></a>
+
+#### UserStatus
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| UserStatusNormal | 0 | 默认用户状态 |
+| UserStatusBanned | 1 | 用户被封禁 |
+| UserStatusExpunged | 2 | 用户被删除 |
+
+<a id="ref-openim-sdkws-useraddfriendpermission"></a>
+
+#### UserAddFriendPermission
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| AddFriendAllowed | 0 | Allow to be added as a friend (requires approval) |
+| AddFriendAllowedNoReview | 1 | Allow to be added as a friend (no approval needed) |
+| AddFriendDenied | 2 | Do not allow to be added as a friend |
+

@@ -1,0 +1,108 @@
+---
+sidebar_position: 6
+title: "Access URL"
+hide_title: true
+---
+
+<center>
+
+## Access URL
+
+</center>
+
+### 简要描述
+
+- 获取对象访问地址。
+POST `/object/access_url` 用于按请求体获取对象的临时访问地址，返回 JSON，包含 `url` 和 `expireTime`。
+GET `/object/{name=**}` 用于直接按对象路径访问资源，服务端会透传 query 参数调用同一 RPC；
+在实际 HTTP 接口中，该 GET 路由会返回 302 重定向到最终对象地址，而不是返回 JSON。
+`query.type=image` 时支持图片处理参数：`width`、`height`、`format`。
+
+### 请求方式
+
+- `POST`
+- `GET`
+
+### 请求 URL
+
+- `/object/access_url`
+- `/object/{name=**}`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "name": "avatar/2026/03/logo.png",
+  "query": {
+    "format": "webp",
+    "height": "200",
+    "type": "image",
+    "width": "200"
+  }
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| name | 必填 | string | 对象名称。支持多级路径，GET 方式访问时对应 `/object/{name=**}` 中的路径部分。 |
+| query | 可选 | [map []QueryEntry](#ref-openim-third-accessurlreq-queryentry) | 访问参数。<br />不传或 `type` 为空时，返回对象原始访问地址；<br />当 `type=image` 时，可携带 `width`、`height`、`format` 生成图片处理后的访问地址；<br />当前仅支持 `image` 类型，其他值会返回参数错误。 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "expireTime": 0,
+    "url": "string"
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [AccessURLResp](#ref-openim-third-accessurlresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-third-accessurlreq"></a>
+
+#### AccessURLReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| name | 必填 | string | 对象名称。支持多级路径，GET 方式访问时对应 `/object/{name=**}` 中的路径部分。 |
+| query | 可选 | [map []QueryEntry](#ref-openim-third-accessurlreq-queryentry) | 访问参数。<br />不传或 `type` 为空时，返回对象原始访问地址；<br />当 `type=image` 时，可携带 `width`、`height`、`format` 生成图片处理后的访问地址；<br />当前仅支持 `image` 类型，其他值会返回参数错误。 |
+
+<a id="ref-openim-third-accessurlreq-queryentry"></a>
+
+#### QueryEntry
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| key | 必填 | string |  |
+| value | 必填 | string |  |
+
+<a id="ref-openim-third-accessurlresp"></a>
+
+#### AccessURLResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| url | 必填 | string |  |
+| expireTime | 必填 | int64 |  |
+

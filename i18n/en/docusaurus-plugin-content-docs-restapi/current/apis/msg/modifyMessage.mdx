@@ -1,0 +1,94 @@
+---
+sidebar_position: 30
+title: "Modify Message"
+hide_title: true
+---
+
+<center>
+
+## Modify Message
+
+</center>
+
+### 简要描述
+
+- msg 服务接口定义。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/msg/modify_message`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "conversationID": "string",
+  "newContent": "string",
+  "oldContent": "string",
+  "seq": 0
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationID | 必填 | string |  |
+| seq | 必填 | int64 |  |
+| newContent | 必填 | string |  |
+| oldContent | 必填 | string |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "modifiedCount": 0,
+    "modifiedTime": 0
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [ModifyMessageResp](#ref-openim-msg-modifymessageresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-msg-modifymessagereq"></a>
+
+#### ModifyMessageReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationID | 必填 | string |  |
+| seq | 必填 | int64 |  |
+| newContent | 必填 | string |  |
+| oldContent | 必填 | string |  |
+
+<a id="ref-openim-msg-modifymessageresp"></a>
+
+#### ModifyMessageResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| modifiedTime | 必填 | int64 |  |
+| modifiedCount | 必填 | int64 |  |
+

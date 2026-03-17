@@ -1,0 +1,101 @@
+---
+sidebar_position: 11
+title: "Get Subscribe Users Status"
+hide_title: true
+---
+
+<center>
+
+## Get Subscribe Users Status
+
+</center>
+
+### 简要描述
+
+- 获取指定用户所订阅用户的在线状态。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/user/get_subscribe_users_status`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "userID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 需查询的用户 ID。 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "statusList": [
+      {
+        "platformIDs": [
+          0
+        ],
+        "status": 0,
+        "userID": "string"
+      }
+    ]
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [getSubscribeUsersStatusResp](#ref-openim-user-getsubscribeusersstatusresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-user-getsubscribeusersstatusreq"></a>
+
+#### getSubscribeUsersStatusReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 需查询的用户 ID。 |
+
+<a id="ref-openim-user-getsubscribeusersstatusresp"></a>
+
+#### getSubscribeUsersStatusResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| statusList | 必填 | [[]onlineStatus](#ref-openim-user-onlinestatus) | 订阅用户在线状态列表。 |
+
+<a id="ref-openim-user-onlinestatus"></a>
+
+#### onlineStatus
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户 ID。 |
+| status | 必填 | int32 | 在线状态：1 在线，0 离线。 |
+| platformIDs | 必填 | []int32 | 平台号列表（支持多端在线）。 |
+

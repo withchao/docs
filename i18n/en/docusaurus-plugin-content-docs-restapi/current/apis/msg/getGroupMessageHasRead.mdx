@@ -1,0 +1,120 @@
+---
+sidebar_position: 25
+title: "Get Group Message Has Read"
+hide_title: true
+---
+
+<center>
+
+## Get Group Message Has Read
+
+</center>
+
+### 简要描述
+
+- msg 服务接口定义。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/msg/get_group_message_has_read`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "clientMsgID": "string",
+  "conversationID": "string",
+  "pagination": {
+    "pageNumber": 0,
+    "showNumber": 0
+  },
+  "type": 0
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationID | 必填 | string |  |
+| clientMsgID | 必填 | string |  |
+| type | 必填 | int32 | 0: unread  1: read |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "count": 0,
+    "reads": [
+      {
+        "readTime": 0,
+        "userID": "string"
+      }
+    ]
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetGroupMessageHasReadResp](#ref-openim-msg-getgroupmessagehasreadresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-msg-getgroupmessagehasreadreq"></a>
+
+#### GetGroupMessageHasReadReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationID | 必填 | string |  |
+| clientMsgID | 必填 | string |  |
+| type | 必填 | int32 | 0: unread  1: read |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) |  |
+
+<a id="ref-openim-sdkws-requestpagination"></a>
+
+#### RequestPagination
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pageNumber | 必填 | int32 |  |
+| showNumber | 必填 | int32 |  |
+
+<a id="ref-openim-msg-getgroupmessagehasreadresp"></a>
+
+#### GetGroupMessageHasReadResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| count | 必填 | int64 |  |
+| reads | 必填 | [[]GroupMessageUserReadTime](#ref-openim-msg-groupmessageuserreadtime) |  |
+
+<a id="ref-openim-msg-groupmessageuserreadtime"></a>
+
+#### GroupMessageUserReadTime
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| readTime | 必填 | int64 |  |
+

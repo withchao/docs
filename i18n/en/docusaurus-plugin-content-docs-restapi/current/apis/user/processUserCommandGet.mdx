@@ -1,0 +1,106 @@
+---
+sidebar_position: 16
+title: "Process User Command Get"
+hide_title: true
+---
+
+<center>
+
+## Process User Command Get
+
+</center>
+
+### 简要描述
+
+- add a general function for get
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/user/process_user_command_get`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "type": 0,
+  "userID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| type | 必填 | int32 |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "CommandResp": [
+      {
+        "createTime": 0,
+        "ex": "string",
+        "type": 0,
+        "uuid": "string",
+        "value": "string"
+      }
+    ]
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [processUserCommandGetResp](#ref-openim-user-processusercommandgetresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-user-processusercommandgetreq"></a>
+
+#### processUserCommandGetReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| type | 必填 | int32 |  |
+
+<a id="ref-openim-user-processusercommandgetresp"></a>
+
+#### processUserCommandGetResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| CommandResp | 必填 | [[]CommandInfoResp](#ref-openim-user-commandinforesp) |  |
+
+<a id="ref-openim-user-commandinforesp"></a>
+
+#### CommandInfoResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| type | 必填 | int32 |  |
+| createTime | 必填 | int64 |  |
+| uuid | 必填 | string |  |
+| value | 必填 | string |  |
+| ex | 必填 | string |  |
+

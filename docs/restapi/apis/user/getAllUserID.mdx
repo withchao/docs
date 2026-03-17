@@ -1,0 +1,99 @@
+---
+sidebar_position: 8
+title: "Get All User ID"
+hide_title: true
+---
+
+<center>
+
+## Get All User ID
+
+</center>
+
+### 简要描述
+
+- 获取已在IMServer中注册的用户 ID 列表。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/user/get_all_users_uid`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "pagination": {
+    "pageNumber": "1",
+    "showNumber": "100"
+  }
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "total": 0,
+    "userIDs": [
+      "string"
+    ]
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [getAllUserIDResp](#ref-openim-user-getalluseridresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-user-getalluseridreq"></a>
+
+#### getAllUserIDReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+
+<a id="ref-openim-sdkws-requestpagination"></a>
+
+#### RequestPagination
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pageNumber | 必填 | int32 |  |
+| showNumber | 必填 | int32 |  |
+
+<a id="ref-openim-user-getalluseridresp"></a>
+
+#### getAllUserIDResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| total | 必填 | int32 | 用户总数。 |
+| userIDs | 必填 | []string | 用户 ID 列表。 |
+

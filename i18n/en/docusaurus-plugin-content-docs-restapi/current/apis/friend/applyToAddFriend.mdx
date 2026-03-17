@@ -1,0 +1,88 @@
+---
+sidebar_position: 1
+title: "Apply To Add Friend"
+hide_title: true
+---
+
+<center>
+
+## Apply To Add Friend
+
+</center>
+
+### 简要描述
+
+- fromUserID 向 toUserID 发起好友申请。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/friend/add_friend`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "ex": "string",
+  "fromUserID": "11111111",
+  "reqMsg": "hello!",
+  "toUserID": "11111113"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| fromUserID | 必填 | string | 该用户主动发起好友申请 |
+| toUserID | 必填 | string | 该用户收到好友申请 |
+| reqMsg | 可选 | string | 申请信息 |
+| ex | 可选 | string | 扩展字段 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-relation-applytoaddfriendreq"></a>
+
+#### applyToAddFriendReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| fromUserID | 必填 | string | 该用户主动发起好友申请 |
+| toUserID | 必填 | string | 该用户收到好友申请 |
+| reqMsg | 可选 | string | 申请信息 |
+| ex | 可选 | string | 扩展字段 |
+
+<a id="ref-openim-relation-applytoaddfriendresp"></a>
+
+#### applyToAddFriendResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

@@ -1,0 +1,139 @@
+---
+sidebar_position: 4
+title: "Get Signal Invitation Info Start App"
+hide_title: true
+---
+
+<center>
+
+## Get Signal Invitation Info Start App
+
+</center>
+
+### 简要描述
+
+- Signal 服务接口定义。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/rtc-meeting/get_signal_invitation_info_start_app`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "userID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "invitation": {
+      "busyLineUserIDList": [
+        "string"
+      ],
+      "customData": "string",
+      "groupID": "string",
+      "initiateTime": 0,
+      "inviteeUserIDList": [
+        "string"
+      ],
+      "inviterUserID": "string",
+      "mediaType": "string",
+      "platformID": 0,
+      "roomID": "string",
+      "sessionType": 0,
+      "timeout": 0
+    },
+    "offlinePushInfo": {
+      "desc": "string",
+      "ex": "string",
+      "iOSBadgeCount": false,
+      "iOSPushSound": "string",
+      "signalInfo": "string",
+      "title": "string"
+    }
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetSignalInvitationInfoStartAppResp](#ref-openmeeting-signal-getsignalinvitationinfostartappresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openmeeting-signal-getsignalinvitationinfostartappreq"></a>
+
+#### GetSignalInvitationInfoStartAppReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+
+<a id="ref-openmeeting-signal-getsignalinvitationinfostartappresp"></a>
+
+#### GetSignalInvitationInfoStartAppResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| invitation | 必填 | [InvitationInfo](#ref-openmeeting-signal-invitationinfo) |  |
+| offlinePushInfo | 必填 | [OfflinePushInfo](#ref-openim-sdkws-offlinepushinfo) |  |
+
+<a id="ref-openmeeting-signal-invitationinfo"></a>
+
+#### InvitationInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| inviterUserID | 必填 | string |  |
+| inviteeUserIDList | 必填 | []string |  |
+| customData | 必填 | string |  |
+| groupID | 必填 | string |  |
+| roomID | 必填 | string |  |
+| timeout | 必填 | int32 |  |
+| mediaType | 必填 | string |  |
+| platformID | 必填 | int32 |  |
+| sessionType | 必填 | int32 |  |
+| initiateTime | 必填 | int64 |  |
+| busyLineUserIDList | 必填 | []string |  |
+
+<a id="ref-openim-sdkws-offlinepushinfo"></a>
+
+#### OfflinePushInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| title | 必填 | string |  |
+| desc | 必填 | string |  |
+| ex | 必填 | string |  |
+| iOSPushSound | 必填 | string |  |
+| iOSBadgeCount | 必填 | bool |  |
+| signalInfo | 必填 | string |  |
+

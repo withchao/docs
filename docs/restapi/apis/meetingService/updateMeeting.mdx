@@ -1,0 +1,167 @@
+---
+sidebar_position: 9
+title: "Update Meeting"
+hide_title: true
+---
+
+<center>
+
+## Update Meeting
+
+</center>
+
+### 简要描述
+
+- Updates specific fields of a meeting.
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/rtc-meeting/update_meeting`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "audioEncouragement": false,
+  "canParticipantJoinMeetingEarly": false,
+  "canParticipantsEnableCamera": false,
+  "canParticipantsShareScreen": false,
+  "canParticipantsUnmuteMicrophone": false,
+  "disableCameraOnJoin": false,
+  "disableMicrophoneOnJoin": false,
+  "lockMeeting": false,
+  "meetingDuration": 0,
+  "meetingID": "string",
+  "password": "string",
+  "repeatInfo": {
+    "endDate": 0,
+    "interval": 0,
+    "repeatDaysOfWeek": [
+      "SUNDAY"
+    ],
+    "repeatTimes": 0,
+    "repeatType": "string",
+    "uintType": "string"
+  },
+  "scheduledTime": 0,
+  "timeZone": "string",
+  "title": "string",
+  "updatingUserID": "string",
+  "videoMirroring": false
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| meetingID | 必填 | string |  |
+| updatingUserID | 必填 | string |  |
+| title | 可选 | *string |  |
+| scheduledTime | 可选 | *int64 |  |
+| meetingDuration | 可选 | *int64 |  |
+| password | 可选 | *string |  |
+| timeZone | 可选 | *string |  |
+| repeatInfo | 必填 | [MeetingRepeatInfo](#ref-openmeeting-meeting-meetingrepeatinfo) |  |
+| canParticipantsEnableCamera | 可选 | *bool |  |
+| canParticipantsUnmuteMicrophone | 可选 | *bool |  |
+| canParticipantsShareScreen | 可选 | *bool |  |
+| disableCameraOnJoin | 可选 | *bool |  |
+| disableMicrophoneOnJoin | 可选 | *bool |  |
+| canParticipantJoinMeetingEarly | 可选 | *bool | Allow participants to join the meeting early. |
+| lockMeeting | 可选 | *bool | if the meeting is locked, new comer could not join the meeting. |
+| audioEncouragement | 可选 | *bool | could turn on the audio encouragement for client. |
+| videoMirroring | 可选 | *bool | could turn on the video mirroring for client. |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openmeeting-meeting-updatemeetingrequest"></a>
+
+#### UpdateMeetingRequest
+
+Request to update specific fields of a meeting.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| meetingID | 必填 | string |  |
+| updatingUserID | 必填 | string |  |
+| title | 可选 | *string |  |
+| scheduledTime | 可选 | *int64 |  |
+| meetingDuration | 可选 | *int64 |  |
+| password | 可选 | *string |  |
+| timeZone | 可选 | *string |  |
+| repeatInfo | 必填 | [MeetingRepeatInfo](#ref-openmeeting-meeting-meetingrepeatinfo) |  |
+| canParticipantsEnableCamera | 可选 | *bool |  |
+| canParticipantsUnmuteMicrophone | 可选 | *bool |  |
+| canParticipantsShareScreen | 可选 | *bool |  |
+| disableCameraOnJoin | 可选 | *bool |  |
+| disableMicrophoneOnJoin | 可选 | *bool |  |
+| canParticipantJoinMeetingEarly | 可选 | *bool | Allow participants to join the meeting early. |
+| lockMeeting | 可选 | *bool | if the meeting is locked, new comer could not join the meeting. |
+| audioEncouragement | 可选 | *bool | could turn on the audio encouragement for client. |
+| videoMirroring | 可选 | *bool | could turn on the video mirroring for client. |
+
+<a id="ref-openmeeting-meeting-meetingrepeatinfo"></a>
+
+#### MeetingRepeatInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| endDate | 必填 | int64 |  |
+| repeatTimes | 必填 | int32 |  |
+| repeatType | 必填 | string |  |
+| uintType | 必填 | string |  |
+| interval | 必填 | int32 |  |
+| repeatDaysOfWeek | 必填 | [[]DayOfWeek](#ref-openmeeting-meeting-dayofweek) | repeat days of the week |
+
+<a id="ref-openmeeting-meeting-dayofweek"></a>
+
+#### DayOfWeek
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| SUNDAY | 0 |  |
+| MONDAY | 1 |  |
+| TUESDAY | 2 |  |
+| WEDNESDAY | 3 |  |
+| THURSDAY | 4 |  |
+| FRIDAY | 5 |  |
+| SATURDAY | 6 |  |
+
+<a id="ref-openmeeting-meeting-updatemeetingresp"></a>
+
+#### UpdateMeetingResp
+
+Response after updating meeting settings.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

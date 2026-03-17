@@ -1,0 +1,144 @@
+---
+sidebar_position: 8
+title: "Get Owner Conversation"
+hide_title: true
+---
+
+<center>
+
+## Get Owner Conversation
+
+</center>
+
+### 简要描述
+
+- 获取当前用户的会话列表
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/conversation/get_owner_conversation`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "pagination": {
+    "pageNumber": "1",
+    "showNumber": "20"
+  },
+  "userID": "1008432211"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 当前用户ID |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "conversations": [
+      {
+        "attachedInfo": "string",
+        "burnDuration": 0,
+        "conversationID": "string",
+        "conversationType": 0,
+        "ex": "string",
+        "groupAtType": 0,
+        "groupID": "string",
+        "isMsgDestruct": false,
+        "isPinned": false,
+        "isPrivateChat": false,
+        "latestMsgDestructTime": 0,
+        "maxSeq": 0,
+        "minSeq": 0,
+        "msgDestructTime": 0,
+        "ownerUserID": "string",
+        "recvMsgOpt": 0,
+        "userID": "string"
+      }
+    ],
+    "total": 0
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetOwnerConversationResp](#ref-openim-conversation-getownerconversationresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-conversation-getownerconversationreq"></a>
+
+#### GetOwnerConversationReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 当前用户ID |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+
+<a id="ref-openim-sdkws-requestpagination"></a>
+
+#### RequestPagination
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pageNumber | 必填 | int32 |  |
+| showNumber | 必填 | int32 |  |
+
+<a id="ref-openim-conversation-getownerconversationresp"></a>
+
+#### GetOwnerConversationResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| total | 必填 | int64 |  |
+| conversations | 必填 | [[]Conversation](#ref-openim-conversation-conversation) |  |
+
+<a id="ref-openim-conversation-conversation"></a>
+
+#### Conversation
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| ownerUserID | 必填 | string |  |
+| conversationID | 必填 | string |  |
+| recvMsgOpt | 必填 | int32 |  |
+| conversationType | 必填 | int32 |  |
+| userID | 必填 | string |  |
+| groupID | 必填 | string |  |
+| isPinned | 必填 | bool |  |
+| attachedInfo | 必填 | string |  |
+| isPrivateChat | 必填 | bool |  |
+| groupAtType | 必填 | int32 |  |
+| ex | 必填 | string |  |
+| burnDuration | 必填 | int32 |  |
+| minSeq | 必填 | int64 |  |
+| maxSeq | 必填 | int64 |  |
+| msgDestructTime | 必填 | int64 |  |
+| latestMsgDestructTime | 必填 | int64 |  |
+| isMsgDestruct | 必填 | bool |  |
+

@@ -1,0 +1,107 @@
+---
+sidebar_position: 5
+title: "Set Group Info"
+hide_title: true
+---
+
+<center>
+
+## Set Group Info
+
+</center>
+
+### 简要描述
+
+- Set group info
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/group/set_group_info`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "groupInfoForSet": {
+    "applyMemberFriend": 0,
+    "displayIsRead": false,
+    "ex": "string",
+    "faceURL": "string",
+    "groupID": "string",
+    "groupName": "string",
+    "introduction": "string",
+    "lookMemberInfo": 0,
+    "needVerification": 0,
+    "notification": "string"
+  }
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupInfoForSet | 必填 | [GroupInfoForSet](#ref-openim-sdkws-groupinfoforset) |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-group-setgroupinforeq"></a>
+
+#### SetGroupInfoReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupInfoForSet | 必填 | [GroupInfoForSet](#ref-openim-sdkws-groupinfoforset) |  |
+
+<a id="ref-openim-sdkws-groupinfoforset"></a>
+
+#### GroupInfoForSet
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| groupName | 必填 | string | 群名称 |
+| notification | 必填 | string | 群公告 |
+| introduction | 必填 | string | 群简介 |
+| faceURL | 必填 | string | 群头像 |
+| ex | 可选 | *string | 扩展字段 |
+| needVerification | 可选 | *int32 | 是否需要验证 |
+| lookMemberInfo | 可选 | *int32 | 是否允许群成员查看群信息和成员列表 |
+| applyMemberFriend | 可选 | *int32 | 是否允许群成员加好友 |
+| displayIsRead | 可选 | *bool | 是否显示已读未读状态 |
+
+<a id="ref-openim-group-setgroupinforesp"></a>
+
+#### SetGroupInfoResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

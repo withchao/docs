@@ -1,0 +1,82 @@
+---
+sidebar_position: 4
+title: "Set Global Recv Message Opt"
+hide_title: true
+---
+
+<center>
+
+## Set Global Recv Message Opt
+
+</center>
+
+### 简要描述
+
+- 修改指定用户全局免打扰状态。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/user/set_global_msg_recv_opt`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "globalRecvMsgOpt": 0,
+  "userID": "11111112"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户 ID |
+| globalRecvMsgOpt | 必填 | int32 | 全局是否接收消息，0 为正常接收和推送，2 为接收正常，但无离线推送。 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-user-setglobalrecvmessageoptreq"></a>
+
+#### setGlobalRecvMessageOptReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户 ID |
+| globalRecvMsgOpt | 必填 | int32 | 全局是否接收消息，0 为正常接收和推送，2 为接收正常，但无离线推送。 |
+
+<a id="ref-openim-user-setglobalrecvmessageoptresp"></a>
+
+#### setGlobalRecvMessageOptResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

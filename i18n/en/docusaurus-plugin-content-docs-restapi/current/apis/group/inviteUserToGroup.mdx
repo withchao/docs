@@ -1,0 +1,91 @@
+---
+sidebar_position: 18
+title: "Invite User To Group"
+hide_title: true
+---
+
+<center>
+
+## Invite User To Group
+
+</center>
+
+### 简要描述
+
+- 邀请用户进群，用户能否被拉进群，由进群设置来确定，如果需要验证进群，则需要群主或群管理员同意后才能进群。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/group/invite_user_to_group`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "groupID": "2759960147",
+  "invitedUserIDs": [
+    "1225441072",
+    "9906953281"
+  ],
+  "reason": "your reason",
+  "sendMessage": false
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| reason | 可选 | string | 邀请说明 |
+| invitedUserIDs | 必填 | []string | 被邀请的用户ID列表 |
+| sendMessage | 必填 | optional bool (oneof _sendMessage) |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-group-inviteusertogroupreq"></a>
+
+#### InviteUserToGroupReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| reason | 可选 | string | 邀请说明 |
+| invitedUserIDs | 必填 | []string | 被邀请的用户ID列表 |
+| sendMessage | 必填 | optional bool (oneof _sendMessage) |  |
+
+<a id="ref-openim-group-inviteusertogroupresp"></a>
+
+#### InviteUserToGroupResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

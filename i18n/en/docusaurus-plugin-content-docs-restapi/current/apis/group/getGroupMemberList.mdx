@@ -1,0 +1,174 @@
+---
+sidebar_position: 14
+title: "Get Group Member List"
+hide_title: true
+---
+
+<center>
+
+## Get Group Member List
+
+</center>
+
+### 简要描述
+
+- 分页获取群成员列表，按照群主，管理员，普通排序
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/group/get_group_member_list`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "filter": 0,
+  "groupID": "2559217223",
+  "keyword": "userID",
+  "pagination": {
+    "pageNumber": "1",
+    "showNumber": "100"
+  }
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+| groupID | 必填 | string | 群ID |
+| filter | 必填 | int32 |  |
+| keyword | 可选 | string | 群成员的 userID 或 nickname，不填时返回对应分页的数据 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "members": [
+      {
+        "appMangerLevel": "UserOrdinaryUser",
+        "ex": "string",
+        "faceURL": "string",
+        "groupID": "string",
+        "inviterUserID": "string",
+        "joinSource": "GroupJoinSource_",
+        "joinTime": 0,
+        "muteEndTime": 0,
+        "nickname": "string",
+        "operatorUserID": "string",
+        "roleLevel": "GroupRoleLevel_",
+        "userID": "string"
+      }
+    ],
+    "total": 0
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetGroupMemberListResp](#ref-openim-group-getgroupmemberlistresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-group-getgroupmemberlistreq"></a>
+
+#### GetGroupMemberListReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+| groupID | 必填 | string | 群ID |
+| filter | 必填 | int32 |  |
+| keyword | 可选 | string | 群成员的 userID 或 nickname，不填时返回对应分页的数据 |
+
+<a id="ref-openim-sdkws-requestpagination"></a>
+
+#### RequestPagination
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pageNumber | 必填 | int32 |  |
+| showNumber | 必填 | int32 |  |
+
+<a id="ref-openim-group-getgroupmemberlistresp"></a>
+
+#### GetGroupMemberListResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| total | 必填 | uint32 |  |
+| members | 必填 | [[]GroupMemberFullInfo](#ref-openim-sdkws-groupmemberfullinfo) |  |
+
+<a id="ref-openim-sdkws-groupmemberfullinfo"></a>
+
+#### GroupMemberFullInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| userID | 必填 | string | 群聊成员用户ID |
+| roleLevel | 必填 | [GroupMemberRoleLevel](#ref-openim-sdkws-groupmemberrolelevel) | 群聊成员角色等级，数值越大权限越高。 |
+| joinTime | 必填 | int64 | 群聊成员加入时间（毫秒） |
+| nickname | 必填 | string | 群聊成员昵称（如果群成员信息中没有，就是对应的用户名字） |
+| faceURL | 必填 | string | 群聊成员头像（如果群成员信息中没有，就是对应的用户头像） |
+| appMangerLevel | 必填 | [UserAppMangerLevel](#ref-openim-sdkws-userappmangerlevel) | 群聊成员角色等级，数值越大权限越高。 |
+| joinSource | 必填 | [GroupJoinSource](#ref-openim-sdkws-groupjoinsource) | 群聊成员加入来源 |
+| operatorUserID | 必填 | string | 操作人用户ID |
+| ex | 必填 | string | 群成员扩展字段 |
+| muteEndTime | 必填 | int64 | 群聊成员被禁言结束时间（毫秒） |
+| inviterUserID | 必填 | string | 群组成员邀请者用户ID |
+
+<a id="ref-openim-sdkws-groupmemberrolelevel"></a>
+
+#### GroupMemberRoleLevel
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| GroupRoleLevel_ | 0 | Reserved field |
+| GroupOwner | 100 | Group owner |
+| GroupAdmin | 60 | Group admin |
+| GroupOrdinaryUsers | 20 | Group ordinary user |
+
+<a id="ref-openim-sdkws-userappmangerlevel"></a>
+
+#### UserAppMangerLevel
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| UserOrdinaryUser | 0 | 普通用户 |
+| UserAdmin | 2 | 管理员 |
+| UserNotificationAdmin | 3 | 系统通知管理员 |
+| UserRobotAdmin | 4 | 机器人管理员 |
+
+<a id="ref-openim-sdkws-groupjoinsource"></a>
+
+#### GroupJoinSource
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| GroupJoinSource_ | 0 |  |
+| GroupJoinSourceAdmin | 1 | administrator invitation to join |
+| GroupJoinSourceInvitation | 2 | invite to join |
+| GroupJoinSourceSearch | 3 | search to join |
+| GroupJoinSourceQRCode | 4 | scan code to join |
+

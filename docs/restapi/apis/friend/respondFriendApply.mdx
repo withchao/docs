@@ -1,0 +1,90 @@
+---
+sidebar_position: 12
+title: "Respond Friend Apply"
+hide_title: true
+---
+
+<center>
+
+## Respond Friend Apply
+
+</center>
+
+### 简要描述
+
+- 同意或拒绝 fromUserID 向 toUserID 发起的好友申请。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/friend/add_friend_response`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "fromUserID": "string",
+  "handleMsg": "agree",
+  "handleResult": 1,
+  "toUserID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| fromUserID | 必填 | string | ID of the user initiating the friend request |
+| toUserID | 必填 | string | ID of the user receiving the friend request |
+| handleResult | 必填 | int32 | 处理结果。 1：同意；-1：拒绝 |
+| handleMsg | 必填 | string | 处理信息 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-relation-respondfriendapplyreq"></a>
+
+#### respondFriendApplyReq
+
+process
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| fromUserID | 必填 | string | ID of the user initiating the friend request |
+| toUserID | 必填 | string | ID of the user receiving the friend request |
+| handleResult | 必填 | int32 | 处理结果。 1：同意；-1：拒绝 |
+| handleMsg | 必填 | string | 处理信息 |
+
+<a id="ref-openim-relation-respondfriendapplyresp"></a>
+
+#### respondFriendApplyResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

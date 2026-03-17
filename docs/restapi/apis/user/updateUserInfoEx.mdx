@@ -1,0 +1,96 @@
+---
+sidebar_position: 3
+title: "Update User Info Ex"
+hide_title: true
+---
+
+<center>
+
+## Update User Info Ex
+
+</center>
+
+### 简要描述
+
+- 修改用户的头像、名称、Ex等信息。仅传需要修改的字段，也支持零值。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/user/update_user_info_ex`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "userInfo": {
+    "ex": "123",
+    "nickname": "alantestuid3",
+    "userID": "2"
+  }
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userInfo | 必填 | [UserInfoWithEx](#ref-openim-sdkws-userinfowithex) | 用户信息 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-user-updateuserinfoexreq"></a>
+
+#### updateUserInfoExReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userInfo | 必填 | [UserInfoWithEx](#ref-openim-sdkws-userinfowithex) | 用户信息 |
+
+<a id="ref-openim-sdkws-userinfowithex"></a>
+
+#### UserInfoWithEx
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户ID |
+| nickname | 可选 | *string | 用户昵称 |
+| faceURL | 可选 | *string | 用户头像URL |
+| ex | 可选 | *string | 用户扩展字段 |
+| globalRecvMsgOpt | 可选 | *int32 | 用户创建时间（毫秒） |
+| addFriendPermission | 可选 | *int32 | 添加用户好友的权限选项 |
+
+<a id="ref-openim-user-updateuserinfoexresp"></a>
+
+#### updateUserInfoExResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

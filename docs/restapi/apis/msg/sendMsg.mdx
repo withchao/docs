@@ -1,0 +1,237 @@
+---
+sidebar_position: 4
+title: "Send Msg"
+hide_title: true
+---
+
+<center>
+
+## Send Msg
+
+</center>
+
+### 简要描述
+
+- Send message
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/msg/message`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "msgData": {
+    "atUserIDList": [
+      "string"
+    ],
+    "attachedInfo": "string",
+    "clientMsgID": "string",
+    "content": "string",
+    "contentType": 0,
+    "createTime": 0,
+    "dstUserIDs": [
+      "string"
+    ],
+    "ex": "string",
+    "groupID": "string",
+    "isRead": false,
+    "keyVersion": 0,
+    "msgFrom": 0,
+    "offlinePushInfo": {
+      "desc": "string",
+      "ex": "string",
+      "iOSBadgeCount": false,
+      "iOSPushSound": "string",
+      "signalInfo": "string",
+      "title": "string"
+    },
+    "options": {
+      "string": false
+    },
+    "recvID": "string",
+    "sendID": "string",
+    "sendTime": 0,
+    "senderFaceURL": "string",
+    "senderNickname": "string",
+    "senderPlatformID": "Platform_",
+    "seq": 0,
+    "serverMsgID": "string",
+    "sessionType": 0,
+    "status": 0
+  }
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| msgData | 必填 | [MsgData](#ref-openim-sdkws-msgdata) |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "clientMsgID": "string",
+    "modify": {
+      "atUserIDList": [
+        "string"
+      ],
+      "attachedInfo": "string",
+      "clientMsgID": "string",
+      "content": "string",
+      "contentType": 0,
+      "createTime": 0,
+      "dstUserIDs": [
+        "string"
+      ],
+      "ex": "string",
+      "groupID": "string",
+      "isRead": false,
+      "keyVersion": 0,
+      "msgFrom": 0,
+      "offlinePushInfo": {
+        "desc": "string",
+        "ex": "string",
+        "iOSBadgeCount": false,
+        "iOSPushSound": "string",
+        "signalInfo": "string",
+        "title": "string"
+      },
+      "options": {
+        "string": false
+      },
+      "recvID": "string",
+      "sendID": "string",
+      "sendTime": 0,
+      "senderFaceURL": "string",
+      "senderNickname": "string",
+      "senderPlatformID": "Platform_",
+      "seq": 0,
+      "serverMsgID": "string",
+      "sessionType": 0,
+      "status": 0
+    },
+    "sendTime": 0,
+    "serverMsgID": "string"
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [SendMsgResp](#ref-openim-msg-sendmsgresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-msg-sendmsgreq"></a>
+
+#### SendMsgReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| msgData | 必填 | [MsgData](#ref-openim-sdkws-msgdata) |  |
+
+<a id="ref-openim-sdkws-msgdata"></a>
+
+#### MsgData
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| sendID | 必填 | string |  |
+| recvID | 必填 | string |  |
+| groupID | 必填 | string |  |
+| clientMsgID | 必填 | string |  |
+| serverMsgID | 必填 | string |  |
+| senderPlatformID | 必填 | [Platform](#ref-openim-sdkws-platform) |  |
+| senderNickname | 必填 | string |  |
+| senderFaceURL | 必填 | string |  |
+| sessionType | 必填 | int32 |  |
+| msgFrom | 必填 | int32 |  |
+| contentType | 必填 | int32 | 消息类型：<br />101 文本，102 图片，103 音频，104 视频，105 文件，110 自定义，1400 系统通知。 |
+| content | 必填 | bytes | 消息内容（JSON 序列化后的字节），不同 contentType 对应不同结构：<br />101: {"content":"文本消息内容"}<br />110: {"data":"json-string","description":"json-string","extension":"json-string"}<br />1400: 系统通知消息体，包含 notificationName/notificationFaceURL/<br />notificationType/text/externalUrl/mixType 以及 pictureElem/soundElem/videoElem/fileElem/ex。<br />该类型消息会话类型固定为 4，且发送者 sendID 必须为后台配置的管理员 ID 之一。<br />mixType:<br />0 纯文字，1 文字+图片，2 文字+视频，3 文字+文件，4 文字+语音，5 文字+语音+图片。 |
+| seq | 必填 | int64 |  |
+| sendTime | 必填 | int64 |  |
+| createTime | 必填 | int64 |  |
+| status | 必填 | int32 |  |
+| isRead | 必填 | bool |  |
+| options | 必填 | [map []OptionsEntry](#ref-openim-sdkws-msgdata-optionsentry) |  |
+| offlinePushInfo | 必填 | [OfflinePushInfo](#ref-openim-sdkws-offlinepushinfo) |  |
+| atUserIDList | 必填 | []string |  |
+| attachedInfo | 必填 | string |  |
+| ex | 必填 | string |  |
+| keyVersion | 必填 | int32 |  |
+| dstUserIDs | 必填 | []string |  |
+
+<a id="ref-openim-sdkws-platform"></a>
+
+#### Platform
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| Platform_ | 0 |  |
+| iOS | 1 | iOS represents the Apple iOS platform. |
+| Android | 2 | Android represents the Android platform. |
+| Windows | 3 | Windows represents the Microsoft Windows platform. |
+| macOS | 4 | macOS represents the Apple macOS platform. |
+| Web | 5 | Web represents the web browser platform. |
+| MiniWeb | 6 | MiniWeb represents the mini-program or mini-web platform. |
+| Linux | 7 | Linux represents the Linux platform. |
+| AndroidPad | 8 | AndroidPad represents the Android tablet platform. |
+| iPad | 9 | iPad represents the Apple iPad platform. |
+| Admin | 10 | Admin represents the admin panel or management platform, typically used for backend administrators.<br />This platform is specifically for administrative filling and can generally be ignored. |
+| HarmonyOS | 11 | HarmonyOS represents the Huawei HarmonyOS platform. |
+
+<a id="ref-openim-sdkws-msgdata-optionsentry"></a>
+
+#### OptionsEntry
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| key | 必填 | string |  |
+| value | 必填 | bool |  |
+
+<a id="ref-openim-sdkws-offlinepushinfo"></a>
+
+#### OfflinePushInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| title | 必填 | string |  |
+| desc | 必填 | string |  |
+| ex | 必填 | string |  |
+| iOSPushSound | 必填 | string |  |
+| iOSBadgeCount | 必填 | bool |  |
+| signalInfo | 必填 | string |  |
+
+<a id="ref-openim-msg-sendmsgresp"></a>
+
+#### SendMsgResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| serverMsgID | 必填 | string |  |
+| clientMsgID | 必填 | string |  |
+| sendTime | 必填 | int64 |  |
+| modify | 必填 | [MsgData](#ref-openim-sdkws-msgdata) |  |
+

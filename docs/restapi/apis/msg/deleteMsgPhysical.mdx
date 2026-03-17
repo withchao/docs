@@ -1,0 +1,84 @@
+---
+sidebar_position: 11
+title: "Delete Msg Physical"
+hide_title: true
+---
+
+<center>
+
+## Delete Msg Physical
+
+</center>
+
+### 简要描述
+
+- Physically delete messages by time
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/msg/delete_msg_physical`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "conversationIDs": [
+    "string"
+  ],
+  "timestamp": 0
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationIDs | 必填 | []string |  |
+| timestamp | 必填 | int64 |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-msg-deletemsgphysicalreq"></a>
+
+#### DeleteMsgPhysicalReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationIDs | 必填 | []string |  |
+| timestamp | 必填 | int64 |  |
+
+<a id="ref-openim-msg-deletemsgphysicalresp"></a>
+
+#### DeleteMsgPhysicalResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

@@ -1,0 +1,94 @@
+---
+sidebar_position: 22
+title: "Get Full Friend User IDs"
+hide_title: true
+---
+
+<center>
+
+## Get Full Friend User IDs
+
+</center>
+
+### 简要描述
+
+- Get full friend userIDs
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/friend/get_full_friend_user_ids`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "idHash": 0,
+  "userID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| idHash | 必填 | uint64 |  |
+| userID | 必填 | string |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "equal": false,
+    "userIDs": [
+      "string"
+    ],
+    "version": 0,
+    "versionID": "string"
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [getFullFriendUserIDsResp](#ref-openim-relation-getfullfrienduseridsresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-relation-getfullfrienduseridsreq"></a>
+
+#### getFullFriendUserIDsReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| idHash | 必填 | uint64 |  |
+| userID | 必填 | string |  |
+
+<a id="ref-openim-relation-getfullfrienduseridsresp"></a>
+
+#### getFullFriendUserIDsResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| version | 必填 | uint64 |  |
+| versionID | 必填 | string |  |
+| equal | 必填 | bool |  |
+| userIDs | 必填 | []string |  |
+

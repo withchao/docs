@@ -1,0 +1,106 @@
+---
+sidebar_position: 4
+title: "Get Meeting Token"
+hide_title: true
+---
+
+<center>
+
+## Get Meeting Token
+
+</center>
+
+### 简要描述
+
+- get a specific meeting token
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/rtc-meeting/get_meeting_token`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "meetingID": "string",
+  "userID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| meetingID | 必填 | string |  |
+| userID | 必填 | string | User who joins the meeting. |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "liveKit": {
+      "token": "string",
+      "url": "string"
+    },
+    "meetingID": "string"
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetMeetingTokenResp](#ref-openmeeting-meeting-getmeetingtokenresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openmeeting-meeting-getmeetingtokenreq"></a>
+
+#### GetMeetingTokenReq
+
+Request to get a specific meeting token.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| meetingID | 必填 | string |  |
+| userID | 必填 | string | User who joins the meeting. |
+
+<a id="ref-openmeeting-meeting-getmeetingtokenresp"></a>
+
+#### GetMeetingTokenResp
+
+Response after getting a specific meeting.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| meetingID | 必填 | string |  |
+| liveKit | 必填 | [LiveKit](#ref-openmeeting-meeting-livekit) |  |
+
+<a id="ref-openmeeting-meeting-livekit"></a>
+
+#### LiveKit
+
+Defines LiveKit access information.
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| token | 必填 | string | Access token for authentication. |
+| url | 必填 | string | URL to connect to LiveKit. |
+

@@ -1,0 +1,82 @@
+---
+sidebar_position: 7
+title: "Remove Black"
+hide_title: true
+---
+
+<center>
+
+## Remove Black
+
+</center>
+
+### 简要描述
+
+- 将 blackUserID 从 ownerUserID 的黑名单列表中移除，即恢复成正常关系。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/friend/remove_black`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "blackUserID": "11111113",
+  "ownerUserID": "11111111"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| ownerUserID | 必填 | string | 移除此用户的黑名单 |
+| blackUserID | 必填 | string | 被移除的黑名单用户 ID |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-relation-removeblackreq"></a>
+
+#### removeBlackReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| ownerUserID | 必填 | string | 移除此用户的黑名单 |
+| blackUserID | 必填 | string | 被移除的黑名单用户 ID |
+
+<a id="ref-openim-relation-removeblackresp"></a>
+
+#### removeBlackResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

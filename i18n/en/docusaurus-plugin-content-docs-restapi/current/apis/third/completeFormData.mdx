@@ -1,0 +1,86 @@
+---
+sidebar_position: 8
+title: "Complete Form Data"
+hide_title: true
+---
+
+<center>
+
+## Complete Form Data
+
+</center>
+
+### 简要描述
+
+- 在文件直传成功后通知服务端完成上传，生成可访问的对象地址。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/object/complete_form_data`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "id": "upload-task-id",
+  "urlPrefix": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| id | 必填 | string | 初始化阶段返回的 ID |
+| urlPrefix | 必填 | string |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "url": "string"
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [CompleteFormDataResp](#ref-openim-third-completeformdataresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-third-completeformdatareq"></a>
+
+#### CompleteFormDataReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| id | 必填 | string | 初始化阶段返回的 ID |
+| urlPrefix | 必填 | string |  |
+
+<a id="ref-openim-third-completeformdataresp"></a>
+
+#### CompleteFormDataResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| url | 必填 | string |  |
+

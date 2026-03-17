@@ -1,0 +1,85 @@
+---
+sidebar_position: 12
+title: "Transfer Group Owner"
+hide_title: true
+---
+
+<center>
+
+## Transfer Group Owner
+
+</center>
+
+### 简要描述
+
+- 将群主转让给其他群成员，转让后原群主变为普通成员。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/group/transfer_group`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "groupID": "2137448827",
+  "newOwnerUserID": "3517105008",
+  "oldOwnerUserID": "2699373280"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| oldOwnerUserID | 必填 | string | 原群主 |
+| newOwnerUserID | 必填 | string | 新群主 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-group-transfergroupownerreq"></a>
+
+#### TransferGroupOwnerReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| oldOwnerUserID | 必填 | string | 原群主 |
+| newOwnerUserID | 必填 | string | 新群主 |
+
+<a id="ref-openim-group-transfergroupownerresp"></a>
+
+#### TransferGroupOwnerResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

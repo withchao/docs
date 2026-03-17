@@ -1,0 +1,150 @@
+---
+sidebar_position: 9
+title: "Get Pagination Blacks"
+hide_title: true
+---
+
+<center>
+
+## Get Pagination Blacks
+
+</center>
+
+### 简要描述
+
+- 获取指定用户的黑名单列表。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/friend/get_black_list`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "pagination": {
+    "pageNumber": "1",
+    "showNumber": "100"
+  },
+  "userID": "11111111"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户 ID |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "blacks": [
+      {
+        "addSource": "BlackSource_",
+        "blackUserInfo": {
+          "ex": "string",
+          "faceURL": "string",
+          "nickname": "string",
+          "userID": "123456789"
+        },
+        "createTime": 0,
+        "ex": "string",
+        "operatorUserID": "string",
+        "ownerUserID": "string"
+      }
+    ],
+    "total": 0
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [getPaginationBlacksResp](#ref-openim-relation-getpaginationblacksresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-relation-getpaginationblacksreq"></a>
+
+#### getPaginationBlacksReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户 ID |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+
+<a id="ref-openim-sdkws-requestpagination"></a>
+
+#### RequestPagination
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pageNumber | 必填 | int32 |  |
+| showNumber | 必填 | int32 |  |
+
+<a id="ref-openim-relation-getpaginationblacksresp"></a>
+
+#### getPaginationBlacksResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| blacks | 必填 | [[]BlackInfo](#ref-openim-sdkws-blackinfo) |  |
+| total | 必填 | int32 |  |
+
+<a id="ref-openim-sdkws-blackinfo"></a>
+
+#### BlackInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| ownerUserID | 必填 | string | 黑名单所属用户ID |
+| createTime | 必填 | int64 | 黑名单添加时间（毫秒） |
+| blackUserInfo | 必填 | [PublicUserInfo](#ref-openim-sdkws-publicuserinfo) | 黑名单用户信息 |
+| addSource | 必填 | [BlackSource](#ref-openim-sdkws-blacksource) | 黑名单添加来源 |
+| operatorUserID | 必填 | string | 操作人用户ID |
+| ex | 必填 | string | 黑名单信息扩展字段 |
+
+<a id="ref-openim-sdkws-publicuserinfo"></a>
+
+#### PublicUserInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户ID |
+| nickname | 必填 | string | 用户昵称 |
+| faceURL | 必填 | string | 用户头像URL |
+| ex | 必填 | string | 用户扩展字段 |
+
+<a id="ref-openim-sdkws-blacksource"></a>
+
+#### BlackSource
+
+todo
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| BlackSource_ | 0 |  |
+| BlackSourceSearch | 3 | Join friend by search. |
+| BlackSourceQRCode | 4 | Join friend by scan QR code. |
+

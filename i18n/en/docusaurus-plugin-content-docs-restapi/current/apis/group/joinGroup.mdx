@@ -1,0 +1,91 @@
+---
+sidebar_position: 2
+title: "Join Group"
+hide_title: true
+---
+
+<center>
+
+## Join Group
+
+</center>
+
+### 简要描述
+
+- 用户申请加入群组，当群设置为允许任何人加入时，会直接进群，否则需要群主或管理员同意。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/group/join_group`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "ex": "string",
+  "groupID": "xadxwr24",
+  "inviterUserID": "4251711209",
+  "joinSource": 0,
+  "reqMessage": "req msg join group"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| reqMessage | 可选 | string | 申请信息 |
+| joinSource | 必填 | int32 | 加群来源，1：管理员邀请，2：被邀请，3：搜索加入，4：扫码加入 |
+| inviterUserID | 必填 | string | 申请者ID |
+| ex | 可选 | string | 扩展字段 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-group-joingroupreq"></a>
+
+#### JoinGroupReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| reqMessage | 可选 | string | 申请信息 |
+| joinSource | 必填 | int32 | 加群来源，1：管理员邀请，2：被邀请，3：搜索加入，4：扫码加入 |
+| inviterUserID | 必填 | string | 申请者ID |
+| ex | 可选 | string | 扩展字段 |
+
+<a id="ref-openim-group-joingroupresp"></a>
+
+#### JoinGroupResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

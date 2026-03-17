@@ -1,0 +1,163 @@
+---
+sidebar_position: 23
+title: "Get Incremental Send Friend Requests"
+hide_title: true
+---
+
+<center>
+
+## Get Incremental Send Friend Requests
+
+</center>
+
+### 简要描述
+
+- friend 服务接口定义。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/friend/get_incremental_send_friend_requests`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "userID": "string",
+  "version": 0,
+  "versionID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| versionID | 必填 | string |  |
+| version | 必填 | uint64 |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "delete": [
+      "string"
+    ],
+    "full": false,
+    "insert": [
+      {
+        "createTime": 0,
+        "ex": "string",
+        "fromFaceURL": "string",
+        "fromNickname": "string",
+        "fromUserID": "string",
+        "handleMsg": "string",
+        "handleResult": "HandleResultDefault",
+        "handleTime": 0,
+        "handlerUserID": "string",
+        "reqMsg": "string",
+        "toFaceURL": "string",
+        "toNickname": "string",
+        "toUserID": "string"
+      }
+    ],
+    "update": [
+      {
+        "createTime": 0,
+        "ex": "string",
+        "fromFaceURL": "string",
+        "fromNickname": "string",
+        "fromUserID": "string",
+        "handleMsg": "string",
+        "handleResult": "HandleResultDefault",
+        "handleTime": 0,
+        "handlerUserID": "string",
+        "reqMsg": "string",
+        "toFaceURL": "string",
+        "toNickname": "string",
+        "toUserID": "string"
+      }
+    ],
+    "version": 0,
+    "versionID": "string"
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetIncrementalSendFriendRequestsResp](#ref-openim-relation-getincrementalsendfriendrequestsresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-relation-getincrementalsendfriendrequestsreq"></a>
+
+#### GetIncrementalSendFriendRequestsReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| versionID | 必填 | string |  |
+| version | 必填 | uint64 |  |
+
+<a id="ref-openim-relation-getincrementalsendfriendrequestsresp"></a>
+
+#### GetIncrementalSendFriendRequestsResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| version | 必填 | uint64 |  |
+| versionID | 必填 | string |  |
+| full | 必填 | bool |  |
+| delete | 必填 | []string |  |
+| insert | 必填 | [[]FriendRequest](#ref-openim-sdkws-friendrequest) |  |
+| update | 必填 | [[]FriendRequest](#ref-openim-sdkws-friendrequest) |  |
+
+<a id="ref-openim-sdkws-friendrequest"></a>
+
+#### FriendRequest
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| fromUserID | 必填 | string | 申请人用户ID |
+| fromNickname | 必填 | string | 申请人昵称 |
+| fromFaceURL | 必填 | string | 申请人头像URL |
+| toUserID | 必填 | string | 被申请人用户ID |
+| toNickname | 必填 | string | 被申请人昵称 |
+| toFaceURL | 必填 | string | 被申请人头像URL |
+| handleResult | 必填 | [HandleResult](#ref-openim-sdkws-handleresult) | 处理结果 |
+| reqMsg | 必填 | string | 申请消息 |
+| createTime | 必填 | int64 | 申请时间（毫秒） |
+| handlerUserID | 必填 | string | 处理人用户ID |
+| handleMsg | 必填 | string | 处理消息 |
+| handleTime | 必填 | int64 | 处理时间（毫秒） |
+| ex | 必填 | string | 好友请求扩展字段 |
+
+<a id="ref-openim-sdkws-handleresult"></a>
+
+#### HandleResult
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| HandleResultDefault | 0 | wait request handle. |
+| HandleResultDecline | -1 | decline the request. |
+| HandleResultAccept | 1 | accept the request. |
+

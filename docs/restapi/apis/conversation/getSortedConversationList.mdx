@@ -1,0 +1,169 @@
+---
+sidebar_position: 2
+title: "Get Sorted Conversation List"
+hide_title: true
+---
+
+<center>
+
+## Get Sorted Conversation List
+
+</center>
+
+### 简要描述
+
+- 根据是否置顶、发消息的时间先后获取排序后的会话列表。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/conversation/get_sorted_conversation_list`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "conversationIDs": [
+    "si_2699373280_9906953281"
+  ],
+  "pagination": {
+    "pageNumber": "1",
+    "showNumber": "20"
+  },
+  "userID": "9906953281"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 当前用户ID |
+| conversationIDs | 可选 | []string | 会话ID列表，填写后返回指定的会话列表，不填返回默认分页的会话列表 |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "conversationElems": [
+      {
+        "IsPinned": false,
+        "conversationID": "string",
+        "msgInfo": {
+          "LatestMsgRecvTime": 0,
+          "clientMsgID": "string",
+          "content": "string",
+          "contentType": 0,
+          "ex": "string",
+          "faceURL": "string",
+          "groupFaceURL": "string",
+          "groupID": "string",
+          "groupMemberCount": 0,
+          "groupName": "string",
+          "groupType": 0,
+          "msgFrom": 0,
+          "recvID": "string",
+          "sendID": "string",
+          "senderName": "string",
+          "serverMsgID": "string",
+          "sessionType": 0
+        },
+        "recvMsgOpt": 0,
+        "unreadCount": 0
+      }
+    ],
+    "conversationTotal": 0,
+    "unreadTotal": 0
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetSortedConversationListResp](#ref-openim-conversation-getsortedconversationlistresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-conversation-getsortedconversationlistreq"></a>
+
+#### GetSortedConversationListReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 当前用户ID |
+| conversationIDs | 可选 | []string | 会话ID列表，填写后返回指定的会话列表，不填返回默认分页的会话列表 |
+| pagination | 必填 | [RequestPagination](#ref-openim-sdkws-requestpagination) | 分页参数结构体 |
+
+<a id="ref-openim-sdkws-requestpagination"></a>
+
+#### RequestPagination
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| pageNumber | 必填 | int32 |  |
+| showNumber | 必填 | int32 |  |
+
+<a id="ref-openim-conversation-getsortedconversationlistresp"></a>
+
+#### GetSortedConversationListResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationTotal | 必填 | int64 |  |
+| unreadTotal | 必填 | int64 |  |
+| conversationElems | 必填 | [[]ConversationElem](#ref-openim-conversation-conversationelem) |  |
+
+<a id="ref-openim-conversation-conversationelem"></a>
+
+#### ConversationElem
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| conversationID | 必填 | string |  |
+| recvMsgOpt | 必填 | int32 |  |
+| unreadCount | 必填 | int64 |  |
+| IsPinned | 必填 | bool |  |
+| msgInfo | 必填 | [MsgInfo](#ref-openim-conversation-msginfo) |  |
+
+<a id="ref-openim-conversation-msginfo"></a>
+
+#### MsgInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| serverMsgID | 必填 | string |  |
+| clientMsgID | 必填 | string |  |
+| sessionType | 必填 | int32 |  |
+| sendID | 必填 | string |  |
+| recvID | 必填 | string |  |
+| senderName | 必填 | string |  |
+| faceURL | 必填 | string |  |
+| groupID | 必填 | string |  |
+| groupName | 必填 | string |  |
+| groupFaceURL | 必填 | string |  |
+| groupType | 必填 | int32 |  |
+| groupMemberCount | 必填 | uint32 |  |
+| LatestMsgRecvTime | 必填 | int64 |  |
+| msgFrom | 必填 | int32 |  |
+| contentType | 必填 | int32 | 消息类型：<br />101 文本，102 图片，103 音频，104 视频，105 文件，110 自定义，1400 系统通知。 |
+| content | 必填 | string | 消息内容（JSON 字符串），不同 contentType 对应不同结构。 |
+| ex | 必填 | string |  |
+

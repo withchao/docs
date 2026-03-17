@@ -1,0 +1,94 @@
+---
+sidebar_position: 8
+title: "User Clear All Msg"
+hide_title: true
+---
+
+<center>
+
+## User Clear All Msg
+
+</center>
+
+### 简要描述
+
+- 从服务端删除用户所有消息，不影响客户端已同步消息。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/msg/user_clear_all_msg`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "deleteSyncOpt": {
+    "isSyncOther": "true",
+    "isSyncSelf": "true"
+  },
+  "userID": "3034068043"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户ID |
+| deleteSyncOpt | 必填 | [DeleteSyncOpt](#ref-openim-msg-deletesyncopt) | 删除同步选项 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-msg-userclearallmsgreq"></a>
+
+#### UserClearAllMsgReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户ID |
+| deleteSyncOpt | 必填 | [DeleteSyncOpt](#ref-openim-msg-deletesyncopt) | 删除同步选项 |
+
+<a id="ref-openim-msg-deletesyncopt"></a>
+
+#### DeleteSyncOpt
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| IsSyncSelf | 必填 | bool |  |
+| IsSyncOther | 必填 | bool |  |
+
+<a id="ref-openim-msg-userclearallmsgresp"></a>
+
+#### UserClearAllMsgResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

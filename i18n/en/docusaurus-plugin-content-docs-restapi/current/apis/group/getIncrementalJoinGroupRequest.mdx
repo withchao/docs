@@ -1,0 +1,301 @@
+---
+sidebar_position: 38
+title: "Get Incremental Join Group Request"
+hide_title: true
+---
+
+<center>
+
+## Get Incremental Join Group Request
+
+</center>
+
+### 简要描述
+
+- 群相关接口
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/group/get_incremental_join_group_request`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "userID": "string",
+  "version": 0,
+  "versionID": "string"
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| versionID | 必填 | string |  |
+| version | 必填 | uint64 |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": "",
+  "data": {
+    "delete": [
+      "string"
+    ],
+    "full": false,
+    "insert": [
+      {
+        "ex": "string",
+        "groupInfo": {
+          "applyMemberFriend": "ProhibitGroupApplyMemberFriend",
+          "createTime": 0,
+          "creatorUserID": "string",
+          "displayIsRead": false,
+          "ex": "string",
+          "faceURL": "string",
+          "groupID": "string",
+          "groupName": "string",
+          "groupType": "GroupType_",
+          "introduction": "string",
+          "lookMemberInfo": "ProhibitGroupLookMemberInfo",
+          "memberCount": 0,
+          "needVerification": "ApplyNeedVerificationInviteDirectly",
+          "notification": "string",
+          "notificationUpdateTime": 0,
+          "notificationUserID": "string",
+          "ownerUserID": "string",
+          "status": "GroupStatusDefault"
+        },
+        "handleMsg": "string",
+        "handleResult": "HandleResultDefault",
+        "handleTime": 0,
+        "handleUserID": "string",
+        "inviterUserID": "string",
+        "joinSource": "GroupJoinSource_",
+        "reqMsg": "string",
+        "reqTime": 0,
+        "userInfo": {
+          "ex": "string",
+          "faceURL": "string",
+          "nickname": "string",
+          "userID": "123456789"
+        }
+      }
+    ],
+    "update": [
+      {
+        "ex": "string",
+        "groupInfo": {
+          "applyMemberFriend": "ProhibitGroupApplyMemberFriend",
+          "createTime": 0,
+          "creatorUserID": "string",
+          "displayIsRead": false,
+          "ex": "string",
+          "faceURL": "string",
+          "groupID": "string",
+          "groupName": "string",
+          "groupType": "GroupType_",
+          "introduction": "string",
+          "lookMemberInfo": "ProhibitGroupLookMemberInfo",
+          "memberCount": 0,
+          "needVerification": "ApplyNeedVerificationInviteDirectly",
+          "notification": "string",
+          "notificationUpdateTime": 0,
+          "notificationUserID": "string",
+          "ownerUserID": "string",
+          "status": "GroupStatusDefault"
+        },
+        "handleMsg": "string",
+        "handleResult": "HandleResultDefault",
+        "handleTime": 0,
+        "handleUserID": "string",
+        "inviterUserID": "string",
+        "joinSource": "GroupJoinSource_",
+        "reqMsg": "string",
+        "reqTime": 0,
+        "userInfo": {
+          "ex": "string",
+          "faceURL": "string",
+          "nickname": "string",
+          "userID": "123456789"
+        }
+      }
+    ],
+    "version": 0,
+    "versionID": "string"
+  }
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+| data | [GetIncrementalJoinGroupRequestResp](#ref-openim-group-getincrementaljoingrouprequestresp) | 通用数据对象，具体结构见下方数据结构 |
+
+### 数据结构
+
+<a id="ref-openim-group-getincrementaljoingrouprequestreq"></a>
+
+#### GetIncrementalJoinGroupRequestReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string |  |
+| versionID | 必填 | string |  |
+| version | 必填 | uint64 |  |
+
+<a id="ref-openim-group-getincrementaljoingrouprequestresp"></a>
+
+#### GetIncrementalJoinGroupRequestResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| version | 必填 | uint64 |  |
+| versionID | 必填 | string |  |
+| full | 必填 | bool |  |
+| delete | 必填 | []string |  |
+| insert | 必填 | [[]GroupRequest](#ref-openim-sdkws-grouprequest) |  |
+| update | 必填 | [[]GroupRequest](#ref-openim-sdkws-grouprequest) |  |
+
+<a id="ref-openim-sdkws-grouprequest"></a>
+
+#### GroupRequest
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userInfo | 必填 | [PublicUserInfo](#ref-openim-sdkws-publicuserinfo) | 申请人用户信息 |
+| groupInfo | 必填 | [GroupInfo](#ref-openim-sdkws-groupinfo) | 申请加入的群信息 |
+| handleResult | 必填 | [HandleResult](#ref-openim-sdkws-handleresult) | 处理结果 |
+| reqMsg | 必填 | string | 申请消息 |
+| handleMsg | 必填 | string | 处理消息 |
+| reqTime | 必填 | int64 | 申请时间（毫秒） |
+| handleUserID | 必填 | string | 处理人用户ID |
+| handleTime | 必填 | int64 | 处理时间（毫秒） |
+| ex | 必填 | string | 群成员生成扩展字段 |
+| joinSource | 必填 | [GroupJoinSource](#ref-openim-sdkws-groupjoinsource) | 群聊成员加入来源 |
+| inviterUserID | 必填 | string | 群组成员邀请者用户ID |
+
+<a id="ref-openim-sdkws-publicuserinfo"></a>
+
+#### PublicUserInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| userID | 必填 | string | 用户ID |
+| nickname | 必填 | string | 用户昵称 |
+| faceURL | 必填 | string | 用户头像URL |
+| ex | 必填 | string | 用户扩展字段 |
+
+<a id="ref-openim-sdkws-groupinfo"></a>
+
+#### GroupInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string | 群ID |
+| groupName | 必填 | string | 群名称 |
+| notification | 必填 | string | 群公告 |
+| introduction | 必填 | string | 群简介 |
+| faceURL | 必填 | string | 群头像 |
+| ownerUserID | 必填 | string | 群主用户ID |
+| createTime | 必填 | int64 | 群创建时间（毫秒） |
+| memberCount | 必填 | uint32 | 群成员数量 |
+| ex | 必填 | string | 扩展字段 |
+| status | 必填 | [GroupStatus](#ref-openim-sdkws-groupstatus) | 群状态 |
+| creatorUserID | 必填 | string | 群创建者用户ID |
+| groupType | 必填 | [GroupType](#ref-openim-sdkws-grouptype) | 群类型 |
+| needVerification | 必填 | [GroupNeedVerification](#ref-openim-sdkws-groupneedverification) | 是否需要验证 |
+| lookMemberInfo | 必填 | [GroupLookMemberInfo](#ref-openim-sdkws-grouplookmemberinfo) | 是否允许群成员查看群信息和成员列表 |
+| applyMemberFriend | 必填 | [GroupApplyMemberFriend](#ref-openim-sdkws-groupapplymemberfriend) | 是否允许群成员加好友 |
+| notificationUpdateTime | 必填 | int64 | 群信息最后一次更新时间（毫秒） |
+| notificationUserID | 必填 | string | 发送系统通知消息的用户ID |
+| displayIsRead | 必填 | bool | 是否显示已读未读状态 |
+
+<a id="ref-openim-sdkws-groupstatus"></a>
+
+#### GroupStatus
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| GroupStatusDefault | 0 | normal group chat |
+| GroupStatusBanned | 1 | the group chat has been banned |
+| GroupStatusDismissed | 2 | the group chat has been dismissed |
+| GroupStatusMuted | 3 | the group chat has been muted |
+
+<a id="ref-openim-sdkws-grouptype"></a>
+
+#### GroupType
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| GroupType_ | 0 |  |
+| WorkingGroup | 2 | currently, there is only this one. |
+
+<a id="ref-openim-sdkws-groupneedverification"></a>
+
+#### GroupNeedVerification
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| ApplyNeedVerificationInviteDirectly | 0 | application requires consent, and invitation is direct entry. |
+| AllNeedVerification | 1 | everyone entering the group needs to be verified, except for those invited by the group owner or administrator. |
+| DirectAccess | 2 | direct access to group chat. |
+
+<a id="ref-openim-sdkws-grouplookmemberinfo"></a>
+
+#### GroupLookMemberInfo
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| ProhibitGroupLookMemberInfo | 0 | do not allow access to member information via the group |
+| AllowGroupLookMemberInfo | 1 | allow access to member information via the group |
+
+<a id="ref-openim-sdkws-groupapplymemberfriend"></a>
+
+#### GroupApplyMemberFriend
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| ProhibitGroupApplyMemberFriend | 0 | do not allow group members to add friends directly |
+| AllowGroupApplyMemberFriend | 1 | allow group members to add friends directly |
+
+<a id="ref-openim-sdkws-handleresult"></a>
+
+#### HandleResult
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| HandleResultDefault | 0 | wait request handle. |
+| HandleResultDecline | -1 | decline the request. |
+| HandleResultAccept | 1 | accept the request. |
+
+<a id="ref-openim-sdkws-groupjoinsource"></a>
+
+#### GroupJoinSource
+
+| 名称 | 值 | 说明 |
+| :--- | :--- | :--- |
+| GroupJoinSource_ | 0 |  |
+| GroupJoinSourceAdmin | 1 | administrator invitation to join |
+| GroupJoinSourceInvitation | 2 | invite to join |
+| GroupJoinSourceSearch | 3 | search to join |
+| GroupJoinSourceQRCode | 4 | scan code to join |
+

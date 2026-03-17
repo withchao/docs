@@ -1,0 +1,88 @@
+---
+sidebar_position: 9
+title: "Fcm Update Token"
+hide_title: true
+---
+
+<center>
+
+## Fcm Update Token
+
+</center>
+
+### 简要描述
+
+- 三方服务接口，提供对象存储、推送、日志等功能。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/third/fcm_update_token`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "account": "string",
+  "expireTime": 0,
+  "fcmToken": "string",
+  "platformID": 0
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| platformID | 必填 | int32 |  |
+| fcmToken | 必填 | string |  |
+| account | 必填 | string |  |
+| expireTime | 必填 | int64 |  |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-third-fcmupdatetokenreq"></a>
+
+#### FcmUpdateTokenReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| platformID | 必填 | int32 |  |
+| fcmToken | 必填 | string |  |
+| account | 必填 | string |  |
+| expireTime | 必填 | int64 |  |
+
+<a id="ref-openim-third-fcmupdatetokenresp"></a>
+
+#### FcmUpdateTokenResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+

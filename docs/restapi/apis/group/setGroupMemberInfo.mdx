@@ -1,0 +1,101 @@
+---
+sidebar_position: 25
+title: "Set Group Member Info"
+hide_title: true
+---
+
+<center>
+
+## Set Group Member Info
+
+</center>
+
+### 简要描述
+
+- 修改群成员信息，roleLevel字段不能设置为100（即群主），如需转让群主，请使用转让群主。
+
+### 请求方式
+
+- `POST`
+
+### 请求 URL
+
+- `/group/set_group_member_info`
+
+### Header
+
+| header 名 | 示例值 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| operationID | 1646445464564 | 必填 | string | 用于全局链路追踪，建议使用时间戳，在每个请求中独立 |
+| token | eyJhbxxxx3Xs | 必填 | string | 接口鉴权 token |
+
+### 请求参数示例
+
+```json
+{
+  "members": [
+    {
+      "ex": "string",
+      "faceURL": "string",
+      "groupID": "string",
+      "nickname": "string",
+      "roleLevel": 0,
+      "userID": "string"
+    }
+  ]
+}
+```
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| members | 必填 | [[]SetGroupMemberInfo](#ref-openim-group-setgroupmemberinfo) | 群成员对象列表 |
+
+### 成功返回示例
+
+```json
+{
+  "errCode": 0,
+  "errMsg": "",
+  "errDlt": ""
+}
+```
+
+### 成功返回示例的参数说明
+
+| 参数名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| errCode | int | 错误码，0表示成功 |
+| errMsg | string | 错误简要信息，成功时为空 |
+| errDlt | string | 错误详细信息，成功时为空 |
+
+### 数据结构
+
+<a id="ref-openim-group-setgroupmemberinforeq"></a>
+
+#### SetGroupMemberInfoReq
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| members | 必填 | [[]SetGroupMemberInfo](#ref-openim-group-setgroupmemberinfo) | 群成员对象列表 |
+
+<a id="ref-openim-group-setgroupmemberinfo"></a>
+
+#### SetGroupMemberInfo
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| groupID | 必填 | string |  |
+| userID | 必填 | string |  |
+| nickname | 可选 | *string |  |
+| faceURL | 可选 | *string |  |
+| roleLevel | 可选 | *int32 |  |
+| ex | 可选 | *string |  |
+
+<a id="ref-openim-group-setgroupmemberinforesp"></a>
+
+#### SetGroupMemberInfoResp
+
+| 字段名 | 选填 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| - | - | - | No fields |
+
